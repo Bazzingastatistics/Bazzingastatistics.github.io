@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+	<title></title>
+	<script>
+			//GOD LUCK MY FRIENDS!
+// -------------------------------------- Qualitativa ---------------------------------------------
+	function calc_Qualitativa(){
+		table_quali_disc.innerHTML = ""
+		nome_quali_disc.innerHTML=''
+		discreta()
+	}
+	function ordemCrescente(a,b){
+		return(a-b)	// ordena de forma crescente
+	}
+	function discreta(){
+		table_quali_disc.innerHTML +="<tr> <td>VARIAVEL</td><td>FI</td><td>FR%   </td><td>FAC   </td><td>FAC%  </td></tr> "
+		var nomeVar = document.getElementById('nome_quali_disc').value; //Coloca o nome da variavel
+		var dados = document.getElementById('dados').value; //puxa os dados da pagina
+		let vetDiscreta = dados.toString().split(';'); // separa os valores e insere no vetor
+		vetDiscreta.sort(ordemCrescente) // deixa o vetor na ordem crescente/alfabetica
+        var quantDados ={} ; //obj com informando a quantidade de cada elemento 
+        var acum =0 ; // acumulador de elementos diferentes
+		nome_quali_disc.innerHTML+=nomeVar
+			for(let i = 0 ; i<vetDiscreta.length;i++){ //metodo para alocar a quantidade de cada elemento
+				if(quantDados [vetDiscreta[i] ]){
+					quantDados[vetDiscreta[i]]+=1
+					acum++
+				}else{
+					quantDados[vetDiscreta[i]]=1
+					acum++
+				}			
+		}
+		for(var chave in quantDados){ // pega as variaveis
+			table_quali_disc.innerHTML+= `<td> ${chave /*Inserção de variavel na tabela*/}  <td> ${quantDados[chave]/*Insere a quantidade de repetições da variavel*/} <td>${Math.round((quantDados[chave]/acum)*100) /*Insere e calcula a porcentagem de vezes que o elemento foi inserido*/} % <td> <br> `
+			}
+	}
+// -----------------------------------FIM Qualitativa ---------------------------------------------
+
+
+//--------------------------------------- Nominal -------------------------------------------------
+        function calc_qualiNominal(){
+        table_Nominal.innerHTML = ""
+        nomeVariavel.innerHTML=''
+        nominal()
+    }
+	function nominal(){
+		table_Nominal.innerHTML +="<tr> <td>VARIAVEL</td><td>FI</td><td>FR%   </td><td>FAC   </td><td>FAC%  </td></tr> "
+		var nomeVar = document.getElementById('nomeVar_Nominal').value; //Coloca o nome da variavel
+		var dados_nominal = document.getElementById('dados_nominal').value; //puxa os dados da pagina
+		let vetNominal = dados_nominal.toString().split(';'); // separa os valores e insere no vetor
+		vetNominal.sort() // deixa o vetor na ordem crescente/alfabetica
+		 var quantDados ={} ; //obj com informando a quantidade de cada elemento 
+		 var acum =0 ; // acumulador de elementos diferentes
+		nomeVariavel.innerHTML+=nomeVar
+			for(let i = 0 ; i<vetNominal.length;i++){ //metodo para alocar a quantidade de cada elemento
+				if(quantDados [vetNominal[i] ]){
+					quantDados[vetNominal[i]]+=1
+					acum++
+				}else{
+					quantDados[vetNominal[i]]=1
+					acum++
+				}			
+		}
+		var fac =0;
+		var acumFac = 0;
+		var factotPorc =0;
+		var acumFacPorc = 0; 
+		for(var chave in quantDados){ // pega as variaveis
+		   fac+=quantDados[chave]
+            facPorc = Math.round((quantDados[chave]/acum)*100)
+            factotPorc = fac + acumFacPorc
+            table_Nominal.innerHTML+= `<td> ${chave /*Inserção de variavel na tabela*/}  <td> ${quantDados[chave]/*Insere a quantidade de repetições da variavel*/} <td>${Math.round((quantDados[chave]/acum)*100) /*Insere e calcula a porcentagem de vezes que o elemento foi inserido*/} % <td> ${fac}<td> ${factotPorc}  <br> `
+            acumFacPorc+=facPorc
+		}
+	}
+//----------------------------------- FIM Nominal ---------------------------------------------------
+
+//------------------------------------ Continua -----------------------------------------------------
+    function ordemCrescente(a,b){
+		return(a-b)	// ordena de forma crescente
+	}       
+
+    function calc_continua(){ 
+        table_continua.innerHTML = ""
+        nome_continua.innerHTML=''
+        continua()
+    }
+	function continua(){
+        var nomeVar = document.getElementById('NomeVariavel').value; //Coloca o nome da variavel
+        nome_continua.innerHTML+=nomeVar
+		var dados_continua = document.getElementById('dados_continua').value; //puxa os dados da pagina
+		let vetDiscreta = dados_continua.toString().split(';'); // separa os valores e insere no vetor
+		vetDiscreta.sort(ordemCrescente) // deixa o vetor na ordem crescente/alfabetica
+        var n = vetDiscreta.length; // total de elementos 
+        var xmin=vetDiscreta[0]; // para pegar o menor valor do array
+        var xmax=vetDiscreta[n-1]; // para pegar o maior valor do array
+        var k =Math.sqrt(n); // raiz quadrada dos elemnto
+        k=Math.floor(k) // aproximação de k para baixo
+        console.log(k)
+
+        var ic = 0 ; // ic = intervalo de classe
+        console.log(xmax+":"+xmin)
+        //console.log(k);
+         var alt = xmax - xmin  //calculo feito para descobrir a amplitude
+         // console.log(alt)
+         ic = Math.floor(alt/k) //calculo feito para descobir quantos elementos pular ic=alt/k
+        //   console.log(ic)
+           console.log(alt+ "/"+k+" = "+ic)
+        var valorInicial = Number(xmin);
+        console.log(`Antes do while ${valorInicial}:${xmax}`)
+        console.log(typeof ic + typeof valorInicial)
+        while(valorInicial <= xmax){ 
+        var valorFinal = 0 ;
+        valorFinal = Number(valorInicial + ic)
+        console.log(`${valorInicial}:${valorFinal}:${xmax}`)
+        table_continua.innerHTML+=`<td>${valorInicial}<td>-------------<td>${valorFinal}<td>` 
+        var valorInicial = valorFinal
+        }
+    }
+// --------------------------------FIM Continua -----------------------------------------------------
+
+</script>
+</head>
+<body>
+	<h1>Qualitativa Discreta e Qualitativa Nominal</h1>
+	<div>
+	 	<p>Tabulação</p> 
+	 	 Nome da variavel <input type="text" name="" id="nomeVar"></input>
+	 	<select name="AmosorPop"> 
+	 		<option value="amostra" id="cmbAmostra"> AMOSTRA </option>
+	 		<option value="populacao" id="cmbPopulacao"> POPULAÇÃO</option>
+	 	</select>
+	</div>
+	 
+	<div>
+	 	 <h1>Entrada de dados </h1>
+	 	 <p> 	Manual </p>
+	 	  <input type="" name="" id="dados" placeholder="Insira os dados separados por: ;">  </input>
+		   	<select name="qualitativas"> 
+				<option value="descritiva" id="cmbDescritiva"> DISCRETA </option>
+				<option value="nominal" id="cmbNominaL"> NOMINAL</option>
+			</select>
+		</div><br>
+		<div> <button onclick="calc_Qualitativa()" id="btn">Calcular</button> </div> 
+		<div >
+		<table id="nome_quali_disc"><tr><strong><h1></h1></strong></tr></table>
+		<table id="table_quali_disc" border="1">
+		
+			
+		</table>
+    </div>
+
+    <hr/>
+
+    <div>
+        <h1>Qualitativa Nominal </h1>
+
+        <div>
+            <p>Tabulação</p> 
+            Nome da variavel <input type="text" name="" id="nomeVar_Nominal">                </input>
+            <select name="AmosorPop"> 
+                <option value="amostra" id="cmbAmostra"> AMOSTRA </option>
+                <option value="populacao" id="cmbPopulacao"> POPULAÇÃO</option>
+            </select>
+        </div>
+        <div>
+            <h1>Entrada de dados </h1>
+            <p> 	Manual </p>
+            <input type="" name="" id="dados_nominal" placeholder="Insira os dados separados por: ;">  </input>
+            <select name="qualitativas"> 
+                <option value="descritiva" id="cmbDescritiva"> DISCRETA </option>
+                <option value="nominal" id="cmbNominaL"> NOMINAL</option>
+            </select>
+            </div><br>
+        <div> <button onclick="calc_qualiNominal()" id="btn">Calcular</button> </div> 
+        <div >
+            <table id="nomeVariavel"><tr><strong><h1></h1></strong></tr></table>
+            <table id="table_Nominal" border="1">
+            </table>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div>
+        <h1>Qualitativa Continua </h1>
+	 <div>
+	 	<p>Tabulação</p> 
+	 	 Nome da variavel <input type="text" name="" id="NomeVariavel"></input>
+	 	<select name="AmosorPop"> 
+	 		<option value="amostra" id="cmbAmostra"> AMOSTRA </option>
+	 		<option value="populacao" id="cmbPopulacao"> POPULAÇÃO</option>
+	 	</select>
+	 </div>
+	 	 <h1>Entrada de dados </h1>
+	 	 <p> 	Manual </p>
+	 	  <input type="" name="" id="dados_continua" placeholder="Insira os dados separados por: ;">  </input>
+		</select>
+		</div><br>
+	 <div> <button onclick="calc_continua()" id="btn">Calcular</button> </div>
+        <strong><table id="nome_continua"><tr><h1></h1></tr></table></strong>
+		<table id="table_continua" border="1">
+        </table>
+	 </div>
+    </div>
+    <hr>
+</body>
+
+</html>
