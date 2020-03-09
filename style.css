@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css?family=Acme&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Chakra+Petch|Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Chakra+Petch|Press+Start+2P|Tangerine&display=swap');
+header {
+ width: 100%;
+ top: 0;
+ left: 0;
+ color: white;
+ background: black;
+ height: 40px;
+ margin-bottom: 20px;
+ display: initial;
+}
+footer {
+ width: 100%;
+ position: fixed;
+ bottom: 0;
+ right: 0;
+ background: black;
+ color: white;
+ height: 40px;
+ display: flex;
+}
+
+/*-----------------------------Fim Login-----------------------------------------------------*/
+.exit_button{
+	width: 15%;
+    padding: 10px;
+}
+#btn_logon{
+	float: right;
+}
+.logo{
+	width: 60px;
+	margin: 0px 80px 10px 80px;
+}
+a{
+	color: #ffffff;
+    text-decoration: none;
+    background-color: transparent;
+    font-family: 'Chakra Petch', sans-serif;
+	/*font-family: 'Press Start 2P', cursive;*/
+	/*font-family: 'Tangerine', cursive;*/
+}
+hr{
+	margin: 3px 0px 3px 0px;
+}
+.btn-secondary {
+    color: #fff;
+    background-color: #000;
+    border-color: #000;
+}
+.btn-secondary:hover {
+    color: #007bff;
+    background-color: transparent;
+    border-color: #fff;
+}
+.table{
+
+	margin-bottom: 0px;
+}
+.type_desc{
+	margin: 0px auto;
+	font-size: 20px;
+	font-weight: bolder;
+}
+.varName{
+	font-size: 30px;
+}
+/*-------------------------------Descritiva-----------------------------------------------------*/
+nav{
+	padding: 10px 10px 0px 10px;
+	background-color: black;
+}
+.div_table{
+    margin-bottom: 10%
+}
+
+
+/*---------------------------fim-Descritiva-----------------------------------------------------*/
